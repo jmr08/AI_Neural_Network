@@ -10,7 +10,45 @@ package ups.edu.ec.main;
  * @author Sir Jorge Mendoza
  */
 public class Main {
+
+    static double oscillation;
+    static double[] arrayUnits = new double[2];
+    String outputEval = "";
+    static int[][] valuesTableAND = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+
     public static void main(String[] args) {
-        
+        init();
+        double h = 0;
+        int g = 0;
+        System.out.println("X" + "\t" + "Y" + "\t" + "h()");
+        for (int[] value : valuesTableAND) {
+            h = functionZeta(value[0], value[1]);
+            g = (int) Math.round(functionSigmoid(h));
+            System.out.println(value[0] + "\t" + value[1] + "\t" + h + "\t" + g);
+        }
+    }
+
+    public static void init() {
+        oscillation = -30;
+        arrayUnits[0] = 20;
+        arrayUnits[1] = 20;
+    }
+
+    public static double functionZeta(int x, int y) {
+        double result = 0;
+        double productoPunto = 0;
+        productoPunto = arrayUnits[0] * x + arrayUnits[1] * y;
+        result = oscillation + productoPunto;
+        return result;
+    }
+
+    public static double functionSigmoid(double z) {
+        double result = 0;
+        try {
+            result = 1 / (1 + (Math.exp(-z)));
+        } catch (Exception e) {
+            System.err.println("Error:" + e.getMessage());
+        }
+        return result;
     }
 }
