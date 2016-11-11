@@ -7,7 +7,7 @@ package ups.edu.ec.main;
 
 /**
  *
- * @author Sir Jorge Mendoza
+ * @author Jorge Mendoza & Gabriela Zambrano Neural Network Simulation: AND.
  */
 public class Main {
 
@@ -19,11 +19,13 @@ public class Main {
     public static void main(String[] args) {
         init();
         double h = 0;
-        int g = 0;
-        System.out.println("X" + "\t" + "Y" + "\t" + "h()");
+        double g = 0;
+        System.out.println("X" + "\t" + "Y" + "\t" + "h()" + "\t" + "g(z)");
+        System.out.println("-----------------------------------------------");
         for (int[] value : valuesTableAND) {
             h = functionZeta(value[0], value[1]);
-            g = (int) Math.round(functionSigmoid(h));
+            //g = (int) Math.round(functionSigmoid(h)); // 0 or 1
+            g = functionSigmoid(h);
             System.out.println(value[0] + "\t" + value[1] + "\t" + h + "\t" + g);
         }
     }
